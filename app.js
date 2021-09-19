@@ -14,25 +14,20 @@ function addExpenseToTotal(){
   const textDesc=inputDescEL.value;    
   totalExpense=totalExpense+expense;
 
-  someText=`Total: ${totalExpense}`
-  headingEl.textContent=someText;
+  totalText=`Total: ${totalExpense}`
+  headingEl.textContent=totalText;
+
 
   currentExpense={desc:textDesc,amount:expense};    
-  allExpenses.push(currentExpense);  
-  // console.clear();
-  // console.table(allExpenses)
+  allExpenses.push(currentExpense);
+  
+  const allExpenseHTML=allExpenses.map(currentExpense => {
+    return `<div>${currentExpense.amount} :: ${currentExpense.desc}</div>`;
+  }); 
 
-  const data1=allExpenses[0];
-  const data2=allExpenses[1];
-  data1Text=`${data1.amount} :: ${data1.desc}`;
-  data2Text=`${data2.amount} :: ${data2.desc}`;
+  const joinedAllExpenseHTML=allExpenseHTML.join("");
 
-  const tableText=`
-    <div>${data1Text}</div>
-    <div>${data2Text}</div>
-  `
-
-  expenseTable.innerHTML=tableText;
+  expenseTable.innerHTML=joinedAllExpenseHTML;
 
 }
 
